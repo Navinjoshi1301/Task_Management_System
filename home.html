@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" href="images/sslogon.png">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+   const val=(card)=>{
+
+   localStorage.setItem("type",card.id)
+
+   console.log(card.id)
+
+   window.location.href = "table.html";
+   }
+  
+    </script>
+  </head>
+  <body class="bg-sc">
+    
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid px-lg-5">
+        <div class="nav-item ">
+          <a id="logo1" class="navbar-brand" href="#"
+            ><img src="images/Group 15.png" alt=""
+          /></a>
+        </div>
+        <div class="nav-item">
+          <button
+            class="navbar-toggler "
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav p-2">
+              <!-- <li class="nav-item ">
+                                    <a class="nav-link home-btn px-4 rounded text-white me-4" aria-current="page" href="#">Home</a>
+                                </li> -->
+                                <li class="nav-item ">
+                                  <a class="nav-link home-btn px-4 rounded text-white  " aria-current="page" href="#">Add +</a>
+                              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+<section class="container section-sc1">
+  <div class="row pt-lg-5">
+    <div class="col-12 col-lg-3 col-md-6 p-4 ">
+      <div  id="year"   class="card rounded-4 mt-5  border-0" 
+      onclick="val(this)"
+      >
+        <div class="card-body d-flex justify-content-center align-items-center rounded-4 c1">
+          <h6 class="text-white">Year <span><i class="bi bi-calendar-check"></i></span></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 col-md-6 p-4">
+      <div id="month" class="card rounded-4 mt-5 border-0"
+      onclick="val(this)">
+        <div class="card-body  d-flex justify-content-center align-items-center  rounded-4 c2">
+         <h6 class="text-white">Month <span><i class="bi bi-calendar-month"></i></span></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 col-md-6 p-4">
+      <div id="day" class="card rounded-4  mt-5 border-0"
+      onclick="val(this)">
+        <div class="card-body d-flex justify-content-center align-items-center  rounded-4 c3">
+          <h6 class="text-white">Day <span><i class="bi bi-calendar-day"></i></span></h6>
+         
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 col-md-6 p-4">
+      <div id="all"  class="card rounded-4 mt-5 border-0"
+      onclick="val(this)">
+        <div class="card-body  d-flex justify-content-center align-items-center  rounded-4 c4">
+          <h6  class="text-white">All <span><i class="bi bi-calendar-heart-fill"></i></span></h6>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</section>
+<div class="triangle"></div>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>Task List</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+    }
+
+ 
+
+    h1 {
+
+      text-align: center;
+
+    }
+
+ 
+
+    #task_list {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin-bottom: 20px;
+
+    }
+
+ 
+
+    #task_list input[type="text"],
+
+    #task_list input[type="date"],
+
+    #task_list button {
+
+      padding: 10px;
+
+      margin-right: 10px;
+
+    }
+
+ 
+
+    #task_list button[type="submit"] {
+
+      background-color: #4CAF50;
+
+      color: white;
+
+      border: none;
+
+      cursor: pointer;
+
+    }
+
+ 
+
+    #task_list button[type="submit"]:hover {
+
+      background-color: #45a049;
+
+    }
+
+ 
+
+    #filter {
+
+      margin-bottom: 10px;
+
+    }
+
+ 
+
+    #table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+    }
+
+ 
+
+    #table th,
+
+    #table td {
+
+      padding: 8px;
+
+      text-align: left;
+
+      border-bottom: 1px solid #ddd;
+
+    }
+
+ 
+
+    #table th {
+
+      background-color: #4CAF50;
+
+      color: white;
+
+    }
+
+ 
+
+    #table tr:hover {
+
+      background-color: #f5f5f5;
+
+    }
+
+ 
+
+    #table button {
+
+      padding: 3px 6px;
+
+      background-color: #f44336;
+
+      color: white;
+
+      border: none;
+
+      cursor: pointer;
+
+    }
+
+ 
+
+    #table button:hover {
+
+      background-color: #d32f2f;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Task List</h1>
+
+ 
+
+  <form id="task_list">
+
+    <input type="text" id="hName" placeholder="Name">
+
+    <input type="text" id="newTask" placeholder="Task">
+
+    <input type="date" id="taskDate">
+
+    <button type="submit">Add Task</button>
+
+  </form>
+
+ 
+
+  <input type="text" id="filter" placeholder="Filter Tasks">
+
+ 
+
+  <table id="table">
+
+    <thead>
+
+      <tr>
+
+        <th>Name</th>
+
+        <th>Task</th>
+
+        <th>Date</th>
+
+        <th>Actions</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody id="list">
+
+      <!-- Tasks will be dynamically added here -->
+
+    </tbody>
+
+  </table>
+
+ 
+
+  <button id="clear">Clear All Tasks</button>
+
+ 
+
+  <script>
+
+  const form = document.getElementById("task_list");
+
+const list = document.getElementById("list");
+
+const filter = document.getElementById("filter");
+
+let clearBtn = document.getElementById("clear");
+
+let newTask = document.getElementById("newTask");
+
+const hName = document.getElementById("hName");
+
+const taskDate = document.getElementById("taskDate");
+
+ 
+
+form.addEventListener("submit", addTask);
+
+list.addEventListener("click", deleteTask);
+
+clearBtn.addEventListener("click", clearTask);
+
+filter.addEventListener("keyup", filterTask);
+
+document.addEventListener("DOMContentLoaded", getTask);
+
+ 
+
+function addTask(e) {
+
+  if (newTask.value === "" || hName.value === "" || taskDate.value === "") {
+
+    alert("");
+
+  } else {
+
+    let li = document.createElement("li");
+
+    li.innerText = `${hName.value}: ${newTask.value} (Date: ${taskDate.value})  `;
+
+    let a = document.createElement("a");
+
+    a.setAttribute("href", "#");
+
+    a.innerText = "x";
+
+    li.appendChild(a);
+
+    list.appendChild(li);
+
+ 
+
+    storeTaskInLocalStorage(hName.value, newTask.value, taskDate.value);
+
+ 
+
+    newTask.value = "";
+
+    hName.value = "";
+
+    taskDate.value = "";
+
+  }
+
+  e.preventDefault();
+
+}
+
+ 
+
+// ...
+
+ 
+
+function getTask() {
+
+  let tasks;
+
+  if (localStorage.getItem("tasks") === null) {
+
+    tasks = [];
+
+  } else {
+
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  }
+
+ 
+
+  tasks.forEach(({ hName, task, taskDate }) => {
+
+    let li = document.createElement("li");
+
+    li.innerText = `${hName}: ${task} (Date: ${taskDate})  `;
+
+    let a = document.createElement("a");
+
+    a.setAttribute("href", "#");
+
+    a.innerText = "x";
+
+    li.appendChild(a);
+
+    list.appendChild(li);
+
+  });
+
+}
+
+ 
+
+// ...
+
+ 
+
+function storeTaskInLocalStorage(hName, task, taskDate) {
+
+  console.log(hName, task, taskDate);
+
+  let tasks;
+
+  if (localStorage.getItem("tasks") === null) {
+
+    tasks = [];
+
+  } else {
+
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  }
+
+  tasks.push({ hName, task, taskDate });
+
+ 
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+}
+
+ 
+
+// ...
+
+ 
+
+function removeFromLocalStorage(element) {
+
+  let tasks;
+
+  if (localStorage.getItem("tasks") === null) {
+
+    tasks = [];
+
+  } else {
+
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  }
+
+  let li = element;
+
+  li.removeChild(li.lastChild);
+
+  console.log(li);
+
+  tasks.forEach(({ hName, task, taskDate }, index) => {
+
+    if (li.textContent.trim() === `${hName}: ${task} (Date: ${taskDate})`) {
+
+      tasks.splice(index, 1);
+
+    }
+
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+}
+
+ 
+
+// // Remove Task
+
+ 
+
+function deleteTask(e) {
+
+  if (e.target.hasAttribute("href")) {
+
+    if (confirm("Are You Sure?")) {
+
+      let ele = e.target.parentElement;
+
+      ele.remove();
+
+      removeFromLocalStorage(ele);
+
+    }
+
+  }
+
+}
+
+ 
+
+function clearTask() {
+
+  if (confirm("Are You Sure?")) {
+
+    list.innerHTML = "";
+
+  }
+
+  localStorage.clear();
+
+}
+
+
+
+
+function filterTask(e) {
+
+  let text = e.target.value.toLowerCase();
+
+  document.querySelectorAll("li").forEach((task) => {
+
+    let item = task.firstChild.textContent.toLocaleLowerCase().indexOf(text);
+
+    if (item != -1) {
+
+      task.style.display = "block";
+
+    } else {
+
+      task.style.display = "none";
+
+    }
+
+  });
+
+}
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #task_list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #task_list input[type="text"],
+    #task_list input[type="date"],
+    #task_list button {
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    #task_list button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #task_list button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #filter {
+      margin-bottom: 10px;
+    }
+    table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color:#F0F4F9;
+}
+
+tr:nth-child(even) {
+  background-color: #F9FAFC;
+}
+
+     </style>
+</head>
+<!-- <body>
+  
+  <form id="task_form">
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="task" placeholder="Task">
+    <input type="date" id="date">
+    <button type="submit">Add Task</button>
+  </form>
+  <input type="text" id="filter" placeholder="Filter Tasks">
+ 
+
+  <table id="task_table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Task</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="task_body">
+    </tbody>
+  </table>
+  
+
+  <button id="clear">Clear All Tasks</button>
+
+  <script src="script.js">
+  </script>
+</body> -->
+<body>
+  
+  <form id="task_form">
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="task" placeholder="Task">
+    <input type="date" id="date">
+    <select class="form-style" id="status">
+      <option value="" disabled selected>Select Status</option>
+      <option value="start">Start</option>
+      <option value="pending">Pending</option>
+      <option value="completed">Completed</option>
+    </select>
+    <button type="submit">Add Task</button>
+  </form>
+  <input type="text" id="filter" placeholder="Filter Tasks">
+ 
+
+  <table id="task_table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Task</th>
+        <th>Date</th>
+        <th>Status</th> <!-- Add the status column header -->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="task_body">
+    </tbody>
+  </table>
+  
+
+  <button id="clear">Clear All Tasks</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
