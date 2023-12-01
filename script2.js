@@ -37,7 +37,7 @@ function populateTaskList() {
 
   const list = document.getElementById("task_body");
   list.appendChild(table);
-  
+
   const tasks = JSON.parse(localStorage.getItem("tasks"));
 
   if (val == "year") {
@@ -65,12 +65,12 @@ function populateTaskList() {
       taskCell.innerText = task;
       dateCell.innerText = date;
       statusCell.innerText = status;
-      deleteButton.innerHTML = '<i class="bi bi-trash"></i>'; 
-      deleteButton.classList.add("btn", "btn-sm","deletee");
+      deleteButton.innerHTML = '<i class="bi bi-trash"></i>';
+      deleteButton.classList.add("btn", "btn-sm", "deletee");
       deleteButton.setAttribute("data-name", name);
       deleteButton.addEventListener("click", deleteTask);
-      editIcon.innerHTML = '<i class="bi bi-pencil-fill " ></i>'; 
-      editIcon.classList.add("btn", "btn-sm" , "edit");
+      editIcon.innerHTML = '<i class="bi bi-pencil-fill " ></i>';
+      editIcon.classList.add("btn", "btn-sm", "edit");
       editIcon.addEventListener("click", editTask);
       editIcon.style.marginRight = "10px";
       editDeleteContainer.appendChild(editIcon);
@@ -82,7 +82,7 @@ function populateTaskList() {
       row.appendChild(statusCell);
       row.appendChild(actionCell);
       tableBody.appendChild(row);
-      
+
     });
   } else {
     let row = document.createElement("tr");
@@ -116,7 +116,7 @@ function filterByStatus(e) {
     link.classList.remove("active");
   });
 
- 
+
   e.target.classList.add("active");
 
   filterTasks();
@@ -127,7 +127,8 @@ function filterTasks() {
   let selectedStatus = document.querySelector(".nav-pills .nav-link.active").dataset.filter;
   let rows = document.getElementById("task_table").getElementsByTagName("tr");
 
-  for (let row of rows) {
+  for (let i = 1; i < rows.length; i++) { // Start from index 1 to skip the header row
+    let row = rows[i];
     let name = row.cells[0].textContent.toLowerCase();
     let task = row.cells[1].textContent.toLowerCase();
     let date = row.cells[2].textContent.toLowerCase();
@@ -183,13 +184,13 @@ function editTask(e) {
     alert("task is completed");
     return;
   }
- 
+
 
   const select = document.createElement("select");
   select.classList.add("status-select");
 
-  
- 
+
+
   const options = ["Start", "Pending", "Completed"];
   options.forEach((option) => {
     const optionElement = document.createElement("option");
@@ -198,16 +199,16 @@ function editTask(e) {
     if (option === currentStatus) {
       optionElement.selected = true;
     }
-    
+
     select.appendChild(optionElement);
   });
 
-  
+
   select.addEventListener("change", function () {
     const newStatus = this.value;
     statusCell.innerText = newStatus;
 
-  
+
     const taskName = taskRow.cells[0].innerText;
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     tasks.forEach((task) => {
@@ -218,7 +219,7 @@ function editTask(e) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   });
 
-  
+
   statusCell.innerHTML = '';
   statusCell.appendChild(select);
 }
