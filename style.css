@@ -21,11 +21,7 @@ section{
     overflow: hidden;
 
 }
-body{
-  /* overflow: hidden; */
-}
 
-/* tablee */
 .searchbar{
   max-width: 200px;
   padding: 4px;
