@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,800;1,200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div class="box" style="width: 390px; height: 540px; border-radius: 15px; background: #F7F7F7; padding: 15px; margin-left: auto; margin-right: auto;">
+            <div class="box-header" style="height: 75px; background: white; border-radius: 12px; display: flex; padding: 0px 20px;">
+                <div style="display: flex; margin:auto;">
+                    <img alt="cyberstash" src="https://mail-template-logos.s3.ap-southeast-2.amazonaws.com/Cyberstash_Logo.png" style="width: 8rem; height: 2.5rem; margin-right: 20px;">
+                    <hr style="margin: 0px; height: 15px; align-self: center; margin-top: 15px;">
+                    <img alt="eclipse" src="https://mail-template-logos.s3.ap-southeast-2.amazonaws.com/eclipse_logo.png" style="width: 8rem; height: 2.1rem; margin-left: 25px; margin-top: 5px;">
+                </div>
+            </div>
+            <div class="box-body" style="padding: 2rem 1rem; text-align: center; font-size: 14px; line-height: 1.3rem; font-family: Montserrat, sans-serif !important;">
+                <h2 class="mb-3" style="margin-bottom: 3rem;">Welcome to the CyberStash eclipse.xdr</h2>
+                {{status}}
+                <div class="px-1" style="padding: 1rem 0rem;">Contact your administrator immediately to report an incident if you didn't recently access eclipse.xdr or if <b>{{ip}}</b> is not your IP address.</div>
+                <p class="mb-0" style="margin-bottom: 0px;"><b>CyberStash Support</b></p>
+                <a href="mailto:{{supportMail}}">{{supportMail}}</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
