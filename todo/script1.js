@@ -6,7 +6,6 @@ let clearBtn = document.getElementById("clear");
 let nameInput = document.getElementById("name");
 let taskInput = document.getElementById("task");
 let dateInput = document.getElementById("date");
-
 form.addEventListener("submit", addTask);
 taskBody.addEventListener("click", deleteTask);
 clearBtn.addEventListener("click", clearTasks);
